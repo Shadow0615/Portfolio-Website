@@ -154,3 +154,23 @@ p {
   max-width: 50%;
   height: auto;
 }
+
+
+h2{
+    color: white;
+    background-color: #222;
+    border-radius: 15px;
+    padding: 10px;
+}
+h3{
+    color: white;
+    background-color: #222;
+    border-radius: 15px;
+    padding: 10px;
+}
+h4{
+    color: white;
+    background-color: #222;
+    border-radius: 15px;
+    padding: 10px;
+}
