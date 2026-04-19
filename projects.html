@@ -31,6 +31,7 @@
     <h3>Kategóriák</h3>
     <a href="#microvezer">Mikrovezérlők</a>
     <a href="#python">Python</a>
+    <a href="#PLC">Plc</a>
     <a href="#DB">Adatbázis</a>
     <a href="#web">Hálózat</a>
     <a href="#VA">Villamos alapismeretek</a>
@@ -43,7 +44,7 @@
 
 <h2>Mikrovezérlők</h2>
 
-<div class="accordion" id="accordionProgramming">
+<div class="accordion" id="accordionArduino">
 
 <div class="accordion-item">
 <h1 class="accordion-header">
@@ -52,7 +53,7 @@ Megvalósítás
 </button>
 </h1>
 
-<div id="proj1" class="accordion-collapse collapse" data-bs-parent="#accordionProgramming">
+<div id="proj1" class="accordion-collapse collapse" data-bs-parent="#accordionArduino">
 <div class="accordion-body">
 <!-- inside ************************************************************************* -->
 <div class="row">
@@ -262,66 +263,125 @@ if (millis() - lastPublish > publishInterval) {
 
 <h2>Programozás</h2>
 
-<div class="accordion" id="accordionHardware">
+<div class="accordion" id="accordionPython">
 
 <div class="accordion-item">
 <h1 class="accordion-header">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#proj3">
 Kép feldolgázás .py
 </button>
-</h1>
 
-<div id="proj3" class="accordion-collapse collapse" data-bs-parent="#accordionHardware">
+
+
+
+<div id="proj3" class="accordion-collapse collapse" data-bs-parent="#accordionPython">
 <div class="accordion-body">
+    <h3>Image Processor – Program Dokumentáció</h3>
+
+  <p>
+    Ez a Python alapú alkalmazás egy <strong>interaktív képfeldolgozó eszköz</strong>,
+    amely <em>Tkinter</em> GUI-t és <em>OpenCV</em>-t használ. A program képeket tölt be,
+    kontúrokat detektál, minimum befoglaló téglalapokat rajzol, és megjeleníti az objektumok középpontjait.
+  </p>
+
+  <h3>Fő funkciók</h3>
+    <div>
+        <ul>
+            <li>Kép betöltése fájlrendszerből</li>
+            <li>Éldetektálás (Canny)</li>
+            <li>Kontúrkeresés és szűrés</li>
+            <li>Minimum befoglaló téglalap rajzolása</li>
+            <li>Középpontok meghatározása és listázása</li>
+            <li>Zoom (egérgörgő)</li>
+            <li>Kép mozgatása (drag/pan)</li>
+        </ul>
+    </div>
+
+  <h4>Képfeldolgozás folyamata</h4>
+  <ol>
+    <li>Kép másolása annotációhoz</li>
+    <li>Szürkeárnyalatossá alakítás</li>
+    <li>Gaussian blur alkalmazása zajcsökkentéshez</li>
+    <li>Canny éldetektálás</li>
+    <li>Kontúrok kinyerése</li>
+    <li>Kis kontúrok kiszűrése (area &lt; 100)</li>
+    <li>Minimum befoglaló téglalap számítása</li>
+    <li>Középpontok meghatározása</li>
+    <li>Középpontok kirajzolása és listázása</li>
+  </ol>
+
+  <h4>Fontos függvények</h4>
+
+  <h4><code>process_image(image)</code></h4>
+  <p>
+    Feldolgozza a bemeneti képet:
+  </p>
+  <ul>
+    <li>Élek detektálása</li>
+    <li>Kontúrok keresése</li>
+    <li>Téglalapok rajzolása</li>
+    <li>Középpontok kiszámítása</li>
+  </ul>
+
+  <h4><code>draw_center_list(img, centers)</code></h4>
+  <p>
+    A kép alján listázza az összes detektált objektum középpontját.
+  </p>
+
+  <h4><code>update_display()</code></h4>
+  <p>
+    Frissíti a megjelenítést:
+  </p>
+  <ul>
+    <li>Kép méretezése a kerethez</li>
+    <li>Zoom alkalmazása</li>
+    <li>Pan eltolás kezelése</li>
+    <li>Canvas-be illesztés</li>
+  </ul>
+
+  <h4><code>zoom(event)</code></h4>
+  <p>
+    Egérgörgővel vezérelt nagyítás/kicsinyítés.
+  </p>
+
+  <h4><code>drag(event)</code></h4>
+  <p>
+    Egérrel történő képmozgatás (pan).
+  </p>
+
+  <h3>Felhasználói interakciók</h3>
+  <ul>
+    <li><strong>Load Image gomb:</strong> kép betöltése</li>
+    <li><strong>Egérgörgő:</strong> zoom</li>
+    <li><strong>Bal egérgomb + húzás:</strong> kép mozgatása</li>
+    <li><strong>Ablak átméretezés:</strong> automatikus újrarajzolás</li>
+  </ul>
+
+  <h4>Használt technológiák</h4>
+  <ul>
+    <li>Python</li>
+    <li>Tkinter (GUI)</li>
+    <li>OpenCV (képfeldolgozás)</li>
+    <li>NumPy (mátrixműveletek)</li>
+    <li>Pillow (kép megjelenítés Tkinterben)</li>
+  </ul>
+
+  <h4>Globális változók</h4>
+  <ul>
+    <li><code>current_cv_image</code> – aktuális betöltött kép</li>
+    <li><code>zoom_factor</code> – nagyítás mértéke</li>
+    <li><code>pan_x, pan_y</code> – eltolás koordináták</li>
+    <li><code>drag_start_x, drag_start_y</code> – drag kezdőpont</li>
+  </ul>
+
+  <h4>Megjegyzések</h4>
+  <p>
+    A program valós idejű feldolgozást végez minden megjelenítés frissítésnél,
+    így nagy képek esetén a teljesítmény csökkenhet.
+  </p>
 
 
-    <h2>Képfeldolgozás</h2>
-    <h3>Áttekintés</h3>
-    <p>Ez a projekt egy pythonos képfeldolgozó alkalmazás, amely lehetővé teszi a felhasználók számára, hogy betöltsenek egy képet, automatikusan felismerjék az azon található objektumokat, és megjelenítsék az egyes felismert objektumok középpontjának koordinátáit. A program interaktív grafikus felhasználói felületet biztosít, amely támogatja a képek nagyítását, mozgatását.</p>
-    <p>Az alkalmazás számítógépes vizuális technikákat használ az objektumok kontúrjainak felismeréséhez és középpontjaik kiszámításához határolókeret-számítások segítségével. Bemutatja az OpenCV, a Tkinter és a gépi látás és ellenőrző rendszerekben általánosan használt képmanipulációs technikák gyakorlati alkalmazását.</p>
-    <h3>Felhasznált modulok</h3>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Modulok</th>
-      <th scope="col">Cél</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Python</td>
-      <td>Fő programozási nyelv</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Tkinter</td>
-      <td>GUI keretrendszer</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>OpenCV</td>
-      <td>Képfeldolgozás és kontúrfelismerés</td>
-    </tr>
-  <tr>
-      <th scope="row">1</th>
-      <td>NumPy</td>
-      <td>Numerikus műveletek képeken</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Pillow (PIL)</td>
-      <td>OpenCV képek konvertálása </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Tkinter</td>
-      <td>megjelenítés</td>
-    </tr>
-  </tbody>
-</table>
     <div>
         <h3>Működő project:</h3>
         <img src="Kep/Process.png" class="SSimg">
@@ -332,14 +392,287 @@ Kép feldolgázás .py
     <a href="https://github.com/Shadow0615/PictureProcess.git" download>
         GitHub link PicProc.py néven
     </a>
-</div>
+
+
+
+
+
 </div>
 </div>
 </div>
 
-</div>
 
+</h1>
+<h1 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#proj10">
+Diák jegy tárolás
+</button>
+</h1>
+    <div id="proj10" class="accordion-collapse collapse" data-bs-parent="#accordionPython">
+        <div class="accordion-body">
+            <h2>Student Grade Manager – Program Dokumentáció</h2>
+
+  <p>
+    Ez a Python alapú alkalmazás egy <strong>egyszerű tanulói jegykezelő rendszer</strong>,
+    amely <em>Tkinter</em> grafikus felületet használ. A program lehetővé teszi
+    diákok adatainak rögzítését, jegyek kiszámítását és fájlba mentését.
+  </p>
+
+  <h3>Fő funkciók</h3>
+  <ul>
+    <li>Diák nevének és pontszámának megadása</li>
+    <li>Jegy automatikus kiszámítása</li>
+    <li>Adatok mentése fájlba</li>
+    <li>Mentett adatok megjelenítése a felületen</li>
+    <li>Hibakezelés (validáció és figyelmeztetések)</li>
+  </ul>
+
+  <h3>Jegy kiszámítás logika</h3>
+  <ul>
+    <li>90–100 pont → 5</li>
+    <li>80–89 pont → 4</li>
+    <li>70–79 pont → 3</li>
+    <li>60–69 pont → 2</li>
+    <li>0–59 pont → 1</li>
+  </ul>
+
+  <h3>Osztályok</h3>
+
+  <h4><code>Student</code></h4>
+  <p>
+    Egy diák adatait reprezentálja.
+  </p>
+  <ul>
+    <li><code>name</code> – diák neve</li>
+    <li><code>points</code> – elért pontszám</li>
+    <li><code>grade</code> – kiszámított jegy</li>
+  </ul>
+  <p>
+    <strong>Metódusok:</strong>
+  </p>
+  <ul>
+    <li><code>calculate_grade()</code> – jegy meghatározása pontszám alapján</li>
+    <li><code>to_string()</code> – formázott szöveges reprezentáció</li>
+  </ul>
+
+  <h4><code>GradeManager</code></h4>
+  <p>
+    Fájlkezelésért felelős osztály.
+  </p>
+  <ul>
+    <li><code>filename</code> – mentési fájl (alapértelmezett: grades.txt)</li>
+  </ul>
+  <p>
+    <strong>Metódusok:</strong>
+  </p>
+  <ul>
+    <li><code>save_student(student)</code> – diák adatainak mentése fájlba</li>
+  </ul>
+
+  <h4><code>GradeApp</code></h4>
+  <p>
+    A grafikus felhasználói felületet kezeli.
+  </p>
+  <ul>
+    <li>Input mezők (név, pontszám)</li>
+    <li>Mentés gomb</li>
+    <li>Szöveges kimeneti mező</li>
+  </ul>
+
+  <h3>Fontos függvények</h3>
+
+  <h4><code>save_student()</code></h4>
+  <p>
+    A felhasználói input feldolgozása:
+  </p>
+  <ul>
+    <li>Üres név ellenőrzése</li>
+    <li>Szám típus ellenőrzése</li>
+    <li>Pontszám tartomány validálása</li>
+    <li>Student objektum létrehozása</li>
+    <li>Mentés fájlba</li>
+    <li>Megjelenítés a GUI-ban</li>
+  </ul>
+
+  <h3>Felhasználói interakciók</h3>
+  <ul>
+    <li><strong>Név megadása</strong> – kötelező mező</li>
+    <li><strong>Pontszám megadása</strong> – 0 és 100 között</li>
+    <li><strong>Save Student gomb</strong> – adat mentése</li>
+    <li><strong>Hibaüzenetek</strong> – érvénytelen input esetén</li>
+  </ul>
+
+  <h3>Használt technológiák</h3>
+  <ul>
+    <li>Python</li>
+    <li>Tkinter (GUI)</li>
+    <li>Fájlkezelés (szöveges fájl írás)</li>
+  </ul>
+
+  <h3>Adatmentés</h3>
+  <p>
+    Az adatok a <code>grades.txt</code> fájlba kerülnek mentésre,
+    minden diák külön sorban, formázott szövegként.
+  </p>
+
+  <h3>Megjegyzések</h3>
+  <ul>
+    <li>A program nem ellenőrzi a duplikált bejegyzéseket</li>
+    <li>A fájl folyamatosan bővül (append mód)</li>
+    <li>A pontszám validáció logikában hiba található:
+      <code>if points &lt; 0 or points &lt; 100</code> helyett
+      <code>if points &lt; 0 or points &gt; 100</code> szükséges
+    </li>
+    <li>A <code>to_string()</code> formátumban hibás idézőjel szerepel ("quot;")</li>
+  </ul>
+            <h3>Letöltés:</h3>
+    <p>A teljes Python projektet letöltheti a GitHubról.:</p>
+    <a href="https://github.com/Shadow0615/PictureProcess.git" download>
+        GitHub link EzDb.py néven
+    </a>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+</div>
 </section>
+
+    <section id="PLC"> <!-- ************************************************************************************** -->
+        <h2>Plc</h2>
+        <div class="accordion" id="accordionPLC">
+            <div class="accordion-item">
+                <h1 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#proj9">
+                        PLC program
+                    </button>
+                </h1>
+                <div id="proj9" class="accordion-collapse collapse" data-bs-parent="#accordionDB">
+                    <div class="accordion-body">
+                        <div>
+                            <h2>Ball Sorting System – Dokumentáció</h2>
+
+    <p>
+        Ez a projekt egy automatikus golyóválogató rendszer működését modellezi az EasyVeep környezetben.
+        A rendszer különböző érzékelők és munkahengerek segítségével három különböző típusú golyót
+        (alumínium, fekete műanyag, sárga műanyag) képes felismerni és megfelelő tárolóba irányítani.
+    </p>
+
+    <h3>Működési leírás</h3>
+    <p>
+        A tár (magazine) feltöltése a zöld gomb megnyomásával történik. A rendszer egy véletlen generátort
+        használ, amely kiválasztja a golyók típusát. A golyók egy gravitációs csatornán keresztül haladnak,
+        ahol különböző érzékelők vizsgálják őket.
+    </p>
+
+    <p>
+        A rendszer három szenzort használ az azonosításhoz:
+    </p>
+    <ul>
+        <li>Kapacitív szenzor – érzékeli a golyó jelenlétét</li>
+        <li>Optikai szenzor – megkülönbözteti a világos (narancs vagy ezüst) golyókat</li>
+        <li>Induktív szenzor – felismeri a fém (alumínium) golyókat</li>
+    </ul>
+
+    <p>
+        A válogatás két záró henger (gate cylinder) vezérlésével történik, amelyek három különböző
+        tároló csatornába irányítják a golyókat.
+    </p>
+
+    <h3>I/O lista (Tag Table)</h3>
+
+    <!-- Tag table image -->
+    <div class="image-container">
+        <a href="Kep/plc0.jpg" target="_blank"> <img src="Kep/plc0.jpg" alt="hátsónézet" class="vagy9-img"> </a>
+        <p class="caption">1. ábra – I/O Tag Table</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cím</th>
+                <th>Megnevezés</th>
+                <th>Típus</th>
+                <th>Leírás</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>I0.0</td><td>Eject piston in position –</td><td>Input</td><td>Kilökő henger visszahúzott állapotban</td></tr>
+            <tr><td>I0.1</td><td>Eject piston in position +</td><td>Input</td><td>Kilökő henger kitolt állapotban</td></tr>
+            <tr><td>I0.2</td><td>Capacitive sensor</td><td>Input</td><td>Golyó jelenlétének érzékelése</td></tr>
+            <tr><td>I0.3</td><td>Optical sensor</td><td>Input</td><td>Világos golyó érzékelése</td></tr>
+            <tr><td>I0.4</td><td>Inductive sensor</td><td>Input</td><td>Fém (alumínium) golyó érzékelése</td></tr>
+            <tr><td>I0.5</td><td>Ball in gravity chute</td><td>Input</td><td>Golyó a gravitációs csatornában</td></tr>
+
+            <tr><td>O0.0</td><td>Eject piston valve</td><td>Output</td><td>Kilökő henger vezérlése</td></tr>
+            <tr><td>O0.1</td><td>Gate for 1. storage</td><td>Output</td><td>1. tároló kapu vezérlése</td></tr>
+            <tr><td>O0.2</td><td>Gate for 2. storage</td><td>Output</td><td>2. tároló kapu vezérlése</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Szenzorok és aktuátorok összefoglalása</h3>
+    <ul>
+        <li>2 db szenzor a kilökő henger pozíciójának érzékelésére</li>
+        <li>1 db kapacitív szenzor – golyó jelenlét</li>
+        <li>1 db optikai szenzor – világos szín felismerése</li>
+        <li>1 db induktív szenzor – fém felismerése</li>
+        <li>1 db szenzor – golyó a gravitációs csatornában</li>
+        <li>1 db aktuátor – kilökő henger</li>
+        <li>2 db aktuátor – tároló kapuk</li>
+    </ul>
+
+    <h3>Program működése</h3>
+    <p>
+        A program lépései:
+    </p>
+    <ol>
+        <li>A rendszer érzékeli, hogy golyó érkezett a csatornába</li>
+        <li>A kilökő henger aktiválódik</li>
+        <li>A szenzorok meghatározzák a golyó típusát</li>
+        <li>A megfelelő kapu aktiválódik</li>
+        <li>A golyó a megfelelő tárolóba kerül</li>
+    </ol>
+
+    <h3>Program képek</h3>
+
+    <div class="image-container">
+        <a href="Kep/plc1.jpg" target="_blank"> <img src="Kep/plc1" alt="hátsónézet" class="vagy9-img"> </a>
+        <p class="caption">2. ábra – Program részlet 1</p>
+    </div>
+
+    <div class="image-container">
+        <a href="Kep/plc2" target="_blank"> <img src="Kep/plc2" alt="hátsónézet" class="vagy9-img"> </a>
+        <p class="caption">3. ábra – Program részlet 2</p>
+    </div>
+
+    <div class="image-container">
+        <a href="Kep/plc3" target="_blank"> <img src="Kep/3" alt="hátsónézet" class="vagy9-img"> </a>
+        <p class="caption">4. ábra – Program részlet 3</p>
+    </div>
+
+    <div class="image-container">
+        <a href="Kep/plc4" target="_blank"> <img src="Kep/plc4" alt="hátsónézet" class="vagy9-img"> </a>
+        <p class="caption">5. ábra – Program részlet 4</p>
+    </div>
+
+    <div class="image-container">
+        <a href="Kep/plc5" target="_blank"> <img src="Kep/plc5" alt="hátsónézet" class="vagy9-img"> </a>
+        <p class="caption">6. ábra – Program részlet 5</p>
+    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
 
 
 
@@ -347,7 +680,7 @@ Kép feldolgázás .py
 
 <h2>Adatbázis</h2>
 
-<div class="accordion" id="accordionWeb">
+<div class="accordion" id="accordionDB">
 
 <div class="accordion-item">
 <h1 class="accordion-header">
@@ -356,7 +689,7 @@ Mikrovetérlő adat gyüjtés
 </button>
 </h1>
 
-<div id="proj4" class="accordion-collapse collapse" data-bs-parent="#accordionWeb">
+<div id="proj4" class="accordion-collapse collapse" data-bs-parent="#accordionDB">
 <div class="accordion-body">
     <div>
         <h2>Okos növény monitor</h2>
@@ -595,6 +928,19 @@ no shutdown</code></pre>
   </table>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div>
         <h4>Képeks</h4>
         <p>
@@ -610,12 +956,12 @@ no shutdown</code></pre>
         </p>
       </div>
 
-    </div>
-  </div>
-  </div> 
-</div> 
-</div> 
 </div>
+</div>
+ </div>
+</div>
+</div>
+
 </section>
 
 
@@ -876,9 +1222,6 @@ Digitális áramkörök
 </div>
 </div>
 </div>
-
-</div>
-
 </section>
 
 
