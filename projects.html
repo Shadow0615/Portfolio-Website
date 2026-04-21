@@ -197,76 +197,76 @@ if (millis() - lastPublish > publishInterval) {
 </div>
       <!-- 7. Node-RED -->
       <div class="mb-4">
-  <h4>7. Node-RED műszerfal</h4>
+          <h4>7. Node-RED műszerfal</h4>
 
-  <h6>7.1 Áttekintés</h6>
-  <p>
-    A Node-RED egy vizuális programozási környezet, amely lehetővé teszi az Arduino által küldött adatok megjelenítését és a rendszer távoli vezérlését MQTT protokollon keresztül.
-    A műszerfal (dashboard) valós időben mutatja a talajnedvességet, a szivattyú állapotát, valamint lehetőséget biztosít manuális és automatikus vezérlésre.
-  </p>
+          <h6>7.1 Áttekintés</h6>
+          <p>
+            A Node-RED egy vizuális programozási környezet, amely lehetővé teszi az Arduino által küldött adatok megjelenítését és a rendszer távoli vezérlését MQTT protokollon keresztül.
+            A műszerfal (dashboard) valós időben mutatja a talajnedvességet, a szivattyú állapotát, valamint lehetőséget biztosít manuális és automatikus vezérlésre.
+          </p>
 
 
-  <h6>7.2 MQTT témák</h6>
-  <table class="table table-bordered">
-    <thead class="table-dark">
-      <tr>
-        <th>Téma</th>
-        <th>Irány</th>
-        <th>Funkció</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>plant/moisture</td>
-        <td>Arduino → Node-RED</td>
-        <td>Talajnedvesség érték továbbítása</td>
-      </tr>
-      <tr>
-        <td>plant/status</td>
-        <td>Arduino → Node-RED</td>
-        <td>Szivattyú aktuális állapota (ON/OFF)</td>
-      </tr>
-      <tr>
-        <td>plant/mode</td>
-        <td>Arduino → Node-RED</td>
-        <td>Működési mód (AUTO / MANUAL)</td>
-      </tr>
-      <tr>
-        <td>plant/pump</td>
-        <td>Node-RED → Arduino</td>
-        <td>Szivattyú vezérlése (ON / OFF / AUTO)</td>
-      </tr>
-    </tbody>
-  </table>
+          <h6>7.2 MQTT témák</h6>
+          <table class="table table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th>Téma</th>
+                <th>Irány</th>
+                <th>Funkció</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>plant/moisture</td>
+                <td>Arduino → Node-RED</td>
+                <td>Talajnedvesség érték továbbítása</td>
+              </tr>
+              <tr>
+                <td>plant/status</td>
+                <td>Arduino → Node-RED</td>
+                <td>Szivattyú aktuális állapota (ON/OFF)</td>
+              </tr>
+              <tr>
+                <td>plant/mode</td>
+                <td>Arduino → Node-RED</td>
+                <td>Működési mód (AUTO / MANUAL)</td>
+              </tr>
+              <tr>
+                <td>plant/pump</td>
+                <td>Node-RED → Arduino</td>
+                <td>Szivattyú vezérlése (ON / OFF / AUTO)</td>
+              </tr>
+            </tbody>
+          </table>
 
-  <h6>7.3 Működés</h6>
-  <p>
-    Az Arduino folyamatosan küldi a szenzor adatokat és az aktuális állapotokat MQTT-n keresztül.
-    A Node-RED ezeket az adatokat feldolgozza és megjeleníti a műszerfalon.
-  </p>
+          <h6>7.3 Működés</h6>
+          <p>
+            Az Arduino folyamatosan küldi a szenzor adatokat és az aktuális állapotokat MQTT-n keresztül.
+            A Node-RED ezeket az adatokat feldolgozza és megjeleníti a műszerfalon.
+          </p>
 
-  <p>
-    A felhasználó a dashboardon keresztül vezérelheti a rendszert:
-  </p>
-  <ul>
-    <li><b>ON</b> – a szivattyú manuálisan bekapcsol</li>
-    <li><b>OFF</b> – a szivattyú manuálisan kikapcsol</li>
-    <li><b>AUTO</b> – a rendszer visszatér automatikus öntözési módba</li>
-  </ul>
+          <p>
+            A felhasználó a dashboardon keresztül vezérelheti a rendszert:
+          </p>
+          <ul>
+            <li><b>ON</b> – a szivattyú manuálisan bekapcsol</li>
+            <li><b>OFF</b> – a szivattyú manuálisan kikapcsol</li>
+            <li><b>AUTO</b> – a rendszer visszatér automatikus öntözési módba</li>
+          </ul>
 
-  <h6>7.4 Automatikus működés megjelenítése</h6>
-  <p>
-    Automatikus módban az Arduino a talajnedvesség alapján vezérli a szivattyút. 
-    A Node-RED csak megjeleníti az aktuális állapotot, de nem avatkozik be a működésbe.
-  </p>
+          <h6>7.4 Automatikus működés megjelenítése</h6>
+          <p>
+            Automatikus módban az Arduino a talajnedvesség alapján vezérli a szivattyút. 
+            A Node-RED csak megjeleníti az aktuális állapotot, de nem avatkozik be a működésbe.
+          </p>
 
-  <h6>7.5 Időzítés és adatfrissítés</h6>
-  <p>
-    Az adatok nem folyamatosan, hanem időzítve kerülnek elküldésre, így elkerülhető a hálózat túlterhelése.
-    A dashboard ennek megfelelően közel valós időben frissül.
-  </p>
-</div>
-
+          <h6>7.5 Időzítés és adatfrissítés</h6>
+          <p>
+            Az adatok nem folyamatosan, hanem időzítve kerülnek elküldésre, így elkerülhető a hálózat túlterhelése.
+            A dashboard ennek megfelelően közel valós időben frissül.
+          </p>
+        </div>
+    </div>
       <!-- 8. képek -->
       <div class="mb-4">
         <h4>8. linkek</h4>
